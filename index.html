@@ -249,6 +249,7 @@ body{
 }
 
 @media(max-width:850px){
+
   .grid{
     grid-template-columns:repeat(2,1fr)
   }
@@ -263,6 +264,7 @@ body{
 }
 
 @media(max-width:520px){
+
   .wrap{
     padding:10px
   }
@@ -338,8 +340,8 @@ body{
 Grill<span>izza</span>
 </div>
 
-<div class="tag">
-One Bite, One Smile!
+<div class="tag" id="tagline">
+یەک گەزە، یەک بزه
 </div>
 
 </section>
@@ -378,11 +380,7 @@ GOOD FOOD • GOOD MOOD • MADE WITH LOVE
 
 <script>
 
-/*
-  IMPORTANT:
-  وێنەکان لە root ـی GitHub ـن،
-  بۆیە images/ ـمان لابردووە.
-*/
+/* وێنەکان لە root ـی GitHub ـن */
 
 const itemImgs = {
 
@@ -413,21 +411,48 @@ const itemImgs = {
 
 };
 
+
+/* دەقی One Bite, One Smile بەپێی زمان */
+
+const taglines = {
+
+  ku: 'یەک گەزە، یەک بزه',
+
+  ar: 'لقمة واحدة، ابتسامة واحدة',
+
+  en: 'One Bite, One Smile!',
+
+  fa: 'یک لقمه، یک لبخند'
+
+};
+
+
 let lang='ku';
+
 let active='pizza';
 
 let db=null;
 
+
 fetch('menu.json')
+
 .then(r=>r.json())
+
 .then(data=>{
+
   db=data;
+
   render();
+
 })
+
 .catch(error=>{
+
   console.error(error);
+
   document.getElementById('content').innerHTML =
-    '<p style="text-align:center;color:#e51e32">Menu data could not be loaded.</p>';
+  '<p style="text-align:center;color:#e51e32">Menu data could not be loaded.</p>';
+
 });
 
 
@@ -437,10 +462,17 @@ function render(){
 
   const L=db.labels[lang];
 
+
   document.documentElement.lang=lang;
 
-  document.documentElement.dir=
+  document.documentElement.dir =
     (lang==='en') ? 'ltr' : 'rtl';
+
+
+  /* گۆڕینی دەقی سەرەوە بەپێی زمان */
+
+  document.getElementById('tagline').textContent =
+    taglines[lang];
 
 
   const cats=[
@@ -452,7 +484,7 @@ function render(){
   ];
 
 
-  document.getElementById('nav').innerHTML=
+  document.getElementById('nav').innerHTML =
 
     cats.map(c=>`
 

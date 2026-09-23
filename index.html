@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ku" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grillizza • QR Menu</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700;800&display=swap');
+:root{--bg:#090909;--card:#111;--red:#e51e32;--gold:#d8a83d;--muted:#aaa}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 50% 0,#2a0a0d 0,#090909 38%);color:#fff;font-family:'Noto Sans Arabic',Arial,sans-serif}
+.wrap{max-width:1180px;margin:auto;padding:18px}
+.hero{min-height:350px;border:1px solid #805c1e;border-radius:28px;overflow:hidden;position:relative;background:linear-gradient(120deg,#0a0a0a,#1a0c0e);box-shadow:0 20px 70px #000}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.8),rgba(0,0,0,.15),rgba(0,0,0,.8))}
+.logo{position:relative;z-index:2;width:170px;height:170px;object-fit:contain;display:block;margin:22px auto 0;border-radius:50%}
+.brand{text-align:center;position:relative;z-index:2;font-size:52px;font-weight:800;letter-spacing:-2px}.brand span{color:#e51e32}
+.tag{text-align:center;position:relative;z-index:2;color:#ddd;font-size:18px}
+.langs{position:absolute;z-index:3;top:20px;right:20px;display:flex;gap:8px;direction:ltr}
+.langs button{background:#111b;border:1px solid #777;color:#fff;border-radius:22px;padding:8px 15px;cursor:pointer}.langs button.active{background:#c91528;border-color:#ff5361}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:20px 0}.nav button{background:#111;color:#fff;border:1px solid #9d772d;border-radius:18px;padding:16px 8px;font-size:16px;cursor:pointer}.nav button.active{background:linear-gradient(145deg,#ed2638,#8f0f1c);box-shadow:0 0 25px #9c1420}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin:30px 4px 14px}.section-head h2{font-size:34px;margin:0;color:#fff}.section-head small{color:#d8a83d}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:linear-gradient(145deg,#171717,#0c0c0c);border:1px solid #805c1e;border-radius:18px;padding:10px;min-height:205px;position:relative}.photo{height:120px;border-radius:13px;background:#201010;overflow:hidden;display:flex;align-items:center;justify-content:center}.photo img{width:100%;height:100%;object-fit:cover}.fake{font-size:45px}.price{position:absolute;top:15px;left:15px;background:#d51c30;padding:5px 11px;border-radius:13px;font-weight:800}.name{font-size:18px;font-weight:800;margin-top:10px}.sub{font-size:13px;color:#bbb;direction:ltr;text-align:right;margin-top:2px}
+.footer{margin:30px 0;padding:22px;border:1px solid #805c1e;border-radius:24px;background:#101010;text-align:center}.footer b{color:#e6b64b}.qrbox{margin:12px auto;width:130px;height:130px;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;font-size:12px;border-radius:10px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.nav{grid-template-columns:repeat(3,1fr)}.brand{font-size:40px}}
+@media(max-width:520px){.wrap{padding:10px}.hero{min-height:310px}.logo{width:130px;height:130px}.grid{grid-template-columns:1fr 1fr;gap:9px}.card{min-height:190px;padding:7px}.photo{height:100px}.name{font-size:15px}.price{font-size:13px;top:10px;left:10px}.nav button{padding:11px 4px;font-size:13px}.langs{right:8px;top:8px;gap:3px}.langs button{padding:6px 9px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero">
+<div class="langs">
+<button data-lang="ku" class="active">کوردی</button><button data-lang="ar">عربي</button><button data-lang="en">English</button><button data-lang="fa">فارسی</button>
+</div>
+<img class="logo" src="assets/IMG_0837(2).jpeg">
+<div class="brand">Grill<span>izza</span></div>
+<div class="tag">One Bite, One Smile!</div>
+</section>
+<nav class="nav" id="nav"></nav>
+<main id="content"></main>
+<footer class="footer">
+<div class="qrbox">QR<br><b>MENU</b><br><span style="font-size:10px">LINK WILL BE ADDED</span></div>
+<div><b>0750 216 2828</b> • <b>0751 216 2828</b> • <b>0776 216 2828</b></div>
+<div style="margin-top:8px;color:#bbb">Erbil • Bakhtyari Rd • Twin Towers</div><div style="margin-top:10px;color:#d8a83d;font-weight:700">لە دوای سکانکردنی QR، تەنها مێنیو دەبینیت؛ داواکاری و پارەدان لە کاشێرە.</div>
+<div style="margin-top:12px;color:#d8a83d">GOOD FOOD • GOOD MOOD • MADE WITH LOVE</div>
+</footer>
+</div>
+<script>
+const fallbackImgs={pizza:'assets/IMG_0894.jpeg',burgers:'assets/IMG_0894.jpeg',finger:'assets/IMG_0895.jpeg',drinks:'assets/IMG_0895.jpeg',sauces:'assets/IMG_0895.jpeg'};
+let lang='ku', active='pizza';
+fetch('menu.json').then(r=>r.json()).then(db=>{
+  window.db=db; render();
+});
+function render(){
+ const L=db.labels[lang]; document.documentElement.lang=lang; document.documentElement.dir=(lang==='en')?'ltr':'rtl';
+ const cats=['pizza','burgers','finger','drinks','sauces'];
+ document.getElementById('nav').innerHTML=cats.map(c=>`<button class="${active===c?'active':''}" onclick="active='${c}';render()">${L[c]}</button>`).join('');
+ const arr=db.menu[active];
+ document.getElementById('content').innerHTML=`<div class="section-head"><h2>${L[active]}</h2><small>${arr.length} items • ${L.iqd}</small></div>
+ <div class="grid">${arr.map((it,i)=>`<article class="card"><div class="photo"><img src="${fallbackImgs[active]}" alt="" loading="lazy"></div>
+ <div class="price">${it[4]} ${L.iqd}</div><div class="name">${it[['ku','ar','en','fa'].indexOf(lang)]}</div><div class="sub">${it[2]}</div></article>`).join('')}</div>`;
+ document.querySelectorAll('.langs button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+}
+document.querySelectorAll('.langs button').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;render()});
+</script>
+</body>
+</html>

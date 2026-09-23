@@ -30,7 +30,7 @@
 <div class="langs">
 <button data-lang="ku" class="active">کوردی</button><button data-lang="ar">عربي</button><button data-lang="en">English</button><button data-lang="fa">فارسی</button>
 </div>
-<img class="logo" src="assets/IMG_0837(2).jpeg">
+<img class="logo" src="IMG_0837(2).jpeg">
 <div class="brand">Grill<span>izza</span></div>
 <div class="tag">One Bite, One Smile!</div>
 </section>
@@ -44,7 +44,7 @@
 </footer>
 </div>
 <script>
-const fallbackImgs={pizza:'assets/IMG_0894.jpeg',burgers:'assets/IMG_0894.jpeg',finger:'assets/IMG_0895.jpeg',drinks:'assets/IMG_0895.jpeg',sauces:'assets/IMG_0895.jpeg'};
+const fallbackImgs={pizza:'IMG_0894.jpeg',burgers:'IMG_0894.jpeg',finger:'IMG_0895.jpeg',drinks:'IMG_0895.jpeg',sauces:'IMG_0895.jpeg'};
 let lang='ku', active='pizza';
 fetch('menu.json').then(r=>r.json()).then(db=>{
   window.db=db; render();

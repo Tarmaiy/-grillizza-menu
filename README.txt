@@ -1,16 +1,21 @@
-GRILLIZZA QR MENU — FINAL READY
+Grillizza QR Menu — Food Photos Version
 
-Upload/replace these files in the repository ROOT on GitHub:
-index.html
-menu.json
-IMG_0837(2).jpeg
-IMG_0894.jpeg
-IMG_0895.jpeg
-qr.png
+Upload/replace these in the ROOT of the GitHub repository:
+- index.html
+- menu.json
+- IMG_0837(2).jpeg
+- qr.png
+- images/ (all food photos inside this folder)
 
-Do NOT put the images inside an assets folder.
+The menu now uses the close-up food photos you provided, one image per item:
+- 12 pizzas
+- 8 burgers
+- 7 finger-food items
+- 9 drinks
+- 7 sauces
 
-GitHub Pages:
+The Grizo item is named in Kurdish as: گریزۆ
+Burger and shawarma images use the closed-style photos from your menu references.
+
+GitHub Pages URL:
 https://tarmay.github.io/-grillizza-menu/
-
-This version fixes image paths, uses the real Grillizza logo, adds a real QR code, fixes phone-number layout, removes “LINK WILL BE ADDED”, keeps Kurdish/Arabic/English/Persian and IQD prices, and keeps ordering/payment at the cashier.

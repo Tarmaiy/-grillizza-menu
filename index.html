@@ -44,7 +44,7 @@
 </footer>
 </div>
 <script>
-const fallbackImgs={pizza:'IMG_0894.jpeg',burgers:'IMG_0894.jpeg',finger:'IMG_0895.jpeg',drinks:'IMG_0895.jpeg',sauces:'IMG_0895.jpeg'};
+const itemImgs={pizza:Array.from({length:12},(_,i)=>`images/pizza-${i+1}.jpg`),burgers:Array.from({length:8},(_,i)=>`images/burgers-${i+1}.jpg`),finger:Array.from({length:7},(_,i)=>`images/finger-${i+1}.jpg`),drinks:Array.from({length:9},(_,i)=>`images/drinks-${i+1}.jpg`),sauces:Array.from({length:7},(_,i)=>`images/sauces-${i+1}.jpg`)};
 let lang='ku', active='pizza';
 fetch('menu.json').then(r=>r.json()).then(db=>{
   window.db=db; render();
@@ -55,7 +55,7 @@ function render(){
  document.getElementById('nav').innerHTML=cats.map(c=>`<button class="${active===c?'active':''}" onclick="active='${c}';render()">${L[c]}</button>`).join('');
  const arr=db.menu[active];
  document.getElementById('content').innerHTML=`<div class="section-head"><h2>${L[active]}</h2><small>${arr.length} items • ${L.iqd}</small></div>
- <div class="grid">${arr.map((it,i)=>`<article class="card"><div class="photo"><img src="${fallbackImgs[active]}" alt="" loading="lazy"></div>
+ <div class="grid">${arr.map((it,i)=>`<article class="card"><div class="photo"><img src="${itemImgs[active][i]}" alt="${it[0]}" loading="lazy"></div>
  <div class="price">${it[4]} ${L.iqd}</div><div class="name">${it[['ku','ar','en','fa'].indexOf(lang)]}</div><div class="sub">${it[2]}</div></article>`).join('')}</div>`;
  document.querySelectorAll('.langs button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
 }
